@@ -4,3 +4,4 @@ install:
 script:
   - cd nginx_node_redis
   - docker-compose up
+  - mocha
