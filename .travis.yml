@@ -1,0 +1,6 @@
+install:
+  - curl -sSL https://get.docker.com/ | sudo sh
+  - sudo pip install docker-compose
+script:
+  - cd nginx_node_redis
+  - docker-compose up
