@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  web:
+    build: ./nginx
+    ports:
+     - "8081:80" 
+    links:
+      - node1:node1
+      - node2:node2
+      - node3:node3
+    depends_on:
+      - node1
+      - node2
+      - node3
+  redis:
+    build: ./redis
+    restart: always
+  node1:
+    build: ./app
+    links:
+      - redis
+    ports:
+      - "8080"
+    depends_on:
+      - redis
+  node2:
+    build: ./app
+    links:
+      - redis
+    ports:
+      - "8080"
+    depends_on:
+      - redis
+  node3:
+    build: ./app
+    links:
+      - redis
+    ports:
+      - "8080"
+    depends_on:
+      - redis
